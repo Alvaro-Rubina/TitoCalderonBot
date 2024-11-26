@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 
+import java.util.Objects;
+
 public class SlashCommandListener extends ListenerAdapter {
 
     @Override
@@ -14,7 +16,7 @@ public class SlashCommandListener extends ListenerAdapter {
                 event.reply(content).queue();
             }
             case "aurisdevirgo" -> {
-                String displayName = event.getMember().getEffectiveName();
+                String displayName = Objects.requireNonNull(event.getMember()).getEffectiveName();
                 event.reply(displayName + " vos sabes que vas a ser el primer baneado?, aaahi esta, te cayo primero el ban. Te voy a contar una cosa " + displayName + ", te acabas de ir baneado, basicamente queres que te de la razon?, osea, por cual te fuiste baneado? por ser pelotudo.").queue();
             }
             default -> {

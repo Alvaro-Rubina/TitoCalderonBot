@@ -18,7 +18,7 @@ public class MessageListener extends ListenerAdapter {
             event.getChannel().sendMessage("Ciao " + username + ", il mio pezzo di vergine preferito").queue();
         }
 
-        if (message.equals("momo se ve trabado")) {
+        if (message.contains("se ve trabado")) {
             event.getChannel().sendMessage("Los que ponen que se ve trabado " +
                     "¿Ustedes se piensan que yo no me doy cuenta que se ve trabado? " +
                     "Porque tengo la calidad acá, me aparecen los kilobytes ¿Entendés? " +

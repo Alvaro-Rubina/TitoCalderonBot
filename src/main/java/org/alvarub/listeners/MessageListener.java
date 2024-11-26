@@ -12,7 +12,7 @@ public class MessageListener extends ListenerAdapter {
         }
 
         String message = event.getMessage().getContentRaw().toLowerCase();
-        String username = event.getAuthor().getName();
+        String username = event.getAuthor().getEffectiveName();
 
         if (message.equals("hola")) {
             event.getChannel().sendMessage("Ciao " + username + ", il mio pezzo di vergine preferito").queue();

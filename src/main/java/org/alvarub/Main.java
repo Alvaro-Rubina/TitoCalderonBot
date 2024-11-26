@@ -3,11 +3,11 @@ package org.alvarub;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import org.alvarub.utils.SlashCommandListener;
-
-import java.util.Collections;
+import org.alvarub.listeners.MessageListener;
+import org.alvarub.listeners.SlashCommandListener;
 
 import static net.dv8tion.jda.api.interactions.commands.OptionType.STRING;
 
@@ -21,17 +21,14 @@ public class Main {
             throw new IllegalArgumentException("Token is not set in the environment variables");
         }
 
-        JDA jda = JDABuilder.createLight(token, Collections.emptyList())
-                .addEventListeners(new SlashCommandListener())
+        JDA jda = JDABuilder.createDefault(token)
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT) // Enable the MESSAGE_CONTENT intent
+                .addEventListeners(new SlashCommandListener(), new MessageListener())
                 .build();
-
-        // Actualizar comandos
-        jda.updateCommands().queue();
 
         // Registrar comandos
         CommandListUpdateAction commands = jda.updateCommands();
 
-        // Comandos
         commands.addCommands(
                 Commands.slash("say", "Makes the bot say what you tell it to")
                         .addOption(STRING, "content", "What the bot should say", true), // Accepting a user input

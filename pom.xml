@@ -15,6 +15,13 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>jitpack</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
   
   <dependencies>
     <dependency>
@@ -46,6 +53,12 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.5.12</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.walkyst</groupId>
+      <artifactId>lavaplayer-fork</artifactId>
+      <version>1.4.3</version>
     </dependency>
 
   </dependencies>

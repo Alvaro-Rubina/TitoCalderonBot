@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.alvarub.commands.AurisDeVirgo;
-import org.alvarub.commands.music.*;
 import org.alvarub.commands.Say;
 import org.alvarub.listeners.MessageListener;
 import org.alvarub.listeners.SlashCommandListener;
@@ -30,12 +29,6 @@ public class Main {
         SlashCommandListener commandListener = new SlashCommandListener();
         commandListener.add(new Say());
         commandListener.add(new AurisDeVirgo());
-        commandListener.add(new NowPlaying());
-        commandListener.add(new Play());
-        commandListener.add(new Queue());
-        commandListener.add(new Repeat());
-        commandListener.add(new Skip());
-        commandListener.add(new Stop());
 
         // Agregar listeners al JDA
         jda.addEventListener(commandListener, new MessageListener());

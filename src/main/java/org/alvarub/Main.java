@@ -5,12 +5,11 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
-import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
+import org.alvarub.commands.AurisDeVirgo;
+import org.alvarub.commands.music.*;
+import org.alvarub.commands.Say;
 import org.alvarub.listeners.MessageListener;
 import org.alvarub.listeners.SlashCommandListener;
-
-import static net.dv8tion.jda.api.interactions.commands.OptionType.STRING;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,23 +22,22 @@ public class Main {
         }
 
         JDA jda = JDABuilder.createDefault(token)
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT) // Enable the MESSAGE_CONTENT intent
-                .addEventListeners(new SlashCommandListener(), new MessageListener())
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .setActivity(Activity.listening("ME LLAMA - MOMO (Beret)").withState("Temazo"))
                 .build();
 
-        // Registrar comandos
-        CommandListUpdateAction commands = jda.updateCommands();
+        // Crear instancia de SlashCommandListener y agregar comandos
+        SlashCommandListener commandListener = new SlashCommandListener();
+        commandListener.add(new Say());
+        commandListener.add(new AurisDeVirgo());
+        commandListener.add(new NowPlaying());
+        commandListener.add(new Play());
+        commandListener.add(new Queue());
+        commandListener.add(new Repeat());
+        commandListener.add(new Skip());
+        commandListener.add(new Stop());
 
-        commands.addCommands(
-                Commands.slash("say", "Makes the bot say what you tell it to")
-                        .addOption(STRING, "content", "What the bot should say", true), // Accepting a user input
-
-                Commands.slash("aurisdevirgo", "el momo se vuelve loco y te banea"),
-                Commands.slash("bidon", "el momo te cuenta la anecdota del bidon")
-        );
-
-        // Then finally send your commands to discord using the API
-        commands.queue();
+        // Agregar listeners al JDA
+        jda.addEventListener(commandListener, new MessageListener());
     }
 }

@@ -1,5 +1,6 @@
 package org.alvarub.listeners;
 
+import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -26,5 +27,9 @@ public class MessageListener extends ListenerAdapter {
                     "si sabes que estoy con un celular entre edificios y está lloviendo desde hoy, " +
                     "no pongas se ve trabado, eh, porque lo que tenés trabado es acá, tenés trabado un paty en la cabeza").queue();
         }
+    }
+
+    public void onMessageDelete(MessageDeleteEvent event) {
+        event.getChannel().sendMessage("ví lo que borraste hdp").queue();
     }
 }

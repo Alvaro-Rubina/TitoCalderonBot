@@ -35,7 +35,8 @@ public class Main {
                 Commands.slash("say", "Makes the bot say what you tell it to")
                         .addOption(STRING, "content", "What the bot should say", true), // Accepting a user input
 
-                Commands.slash("aurisdevirgo", "Hace que el momo se enoje")
+                Commands.slash("aurisdevirgo", "el momo se vuelve loco y te banea"),
+                Commands.slash("bidon", "el momo te cuenta la anecdota del bidon")
         );
 
         // Then finally send your commands to discord using the API
